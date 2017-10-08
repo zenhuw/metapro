@@ -37,8 +37,8 @@ declare var google: any
 })
 export class SetortunaiPage {
 
-  lat: string = this.auth.authInfo.lat;
-  lng: string = this.auth.authInfo.lng;
+  lat: number = parseInt(this.auth.authInfo.lat);
+  lng: number = parseInt(this.auth.authInfo.lng);
   text: string ='';
   infowindowOpen: boolean = true;
   input: {
@@ -226,8 +226,8 @@ export class SetortunaiPage {
 
 updateinfoWindows(){
   var latlng = {
-    lat: parseFloat(this.lat),
-    lng: parseFloat(this.lng)
+    lat: this.lat,
+    lng: this.lng
   };
       var geocoder = new google.maps.Geocoder;
       geocoder.geocode({

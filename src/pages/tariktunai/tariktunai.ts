@@ -33,8 +33,8 @@ declare var google: any
   templateUrl: 'tariktunai.html',
 })
 export class TariktunaiPage {
-  lat: string = this.auth.authInfo.lat;
-  lng: string = this.auth.authInfo.lng;
+  lat: number = parseInt(this.auth.authInfo.lat);
+  lng: number = parseInt(this.auth.authInfo.lng);
   text: string ='';
   infowindowOpen: boolean = true;
 
@@ -222,8 +222,8 @@ xtranfrom: 'M'
 
       updateinfoWindows(){
         var latlng = {
-          lat: parseFloat(this.lat),
-          lng: parseFloat(this.lng)
+          lat: this.lat,
+          lng: this.lng
         };
             var geocoder = new google.maps.Geocoder;
             geocoder.geocode({

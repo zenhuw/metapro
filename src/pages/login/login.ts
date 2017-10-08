@@ -22,7 +22,7 @@ import {
 } from '../../providers/auth-singleton/auth-singleton';
 import {RegistrationPage}
 from '../registration/registration'
-
+import { Geolocation } from '@ionic-native/geolocation';
 /**
  * Generated class for the LoginPage page.
  *
@@ -55,7 +55,7 @@ export class LoginPage {
   lng:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public menucontroller: MenuController, public loadingCtrl: LoadingController, public httpreq: HttpReqProvider, public auth: AuthSingletonProvider, public alertctrl: AlertController,public modalCtrl:ModalController) {
+    public menucontroller: MenuController, public loadingCtrl: LoadingController, public httpreq: HttpReqProvider, public auth: AuthSingletonProvider, public alertctrl: AlertController,public modalCtrl:ModalController,private geolocation: Geolocation) {
     this.menucontroller.enable(false, 'myMenu');
 
     this.getLocation();
@@ -92,15 +92,25 @@ export class LoginPage {
   }
 
 
+getLocation(){
+  this.geolocation.getCurrentPosition().then((resp) => {
+    this.longlat = resp.coords.longitude.toString() + ' ' + resp.coords.latitude.toString();
+    this.lat= resp.coords.latitude.toString();
+    this.lng= resp.coords.longitude.toString();
+    // resp.coords.latitude
+    // resp.coords.longitude
+   }).catch((error) => {
+     console.log('Error getting location', error);
+   });
+}
 
-
-  getLocation() {
-    var lat;
-    var lot;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.run);
-    } else {}
-  }
+  // getLocation() {
+  //   var lat;
+  //   var lot;
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(this.run);
+  //   } else {}
+  // }
 
   run = (position) => {
     var lat = position.coords.latitude;

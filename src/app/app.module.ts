@@ -30,7 +30,8 @@ from '../pages/changepass/changepass'
 import {SortgridPipe}
 from '../pipes/sortgrid/sortgrid';
 import { DatePicker } from '@ionic-native/date-picker';
-import {NotSame} from '../pages/changepass/changepass'
+import {NotSame} from '../pages/changepass/changepass';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,7 @@ import {NotSame} from '../pages/changepass/changepass'
     HttpReqProvider,
     AuthSingletonProvider,
     BarcodeScanner,
-    DatePicker,SortgridPipe
+    DatePicker,SortgridPipe,Geolocation
 
   ]
 })
