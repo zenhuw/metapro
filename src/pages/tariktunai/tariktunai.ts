@@ -16,7 +16,10 @@ import {
 import {
   AuthSingletonProvider
 } from '../../providers/auth-singleton/auth-singleton';
-
+import {
+  GoogleMapsAPIWrapper
+} from '@agm/core'
+declare var google: any
 /**
  * Generated class for the SetortunaiPage page.
  *
@@ -30,7 +33,10 @@ import {
   templateUrl: 'tariktunai.html',
 })
 export class TariktunaiPage {
-
+  lat: string = this.auth.authInfo.lat;
+  lng: string = this.auth.authInfo.lng;
+  text: string ='';
+  infowindowOpen: boolean = true;
 
   input: {
     nominal: any,
@@ -213,5 +219,28 @@ xtranfrom: 'M'
           return false
         }
       }
+
+      updateinfoWindows(){
+        var latlng = {
+          lat: parseFloat(this.lat),
+          lng: parseFloat(this.lng)
+        };
+            var geocoder = new google.maps.Geocoder;
+            geocoder.geocode({
+              'location': latlng
+            }, ((results,status) =>{
+                  this.infowindowOpen = true;
+                  this.text = results[0].formatted_address;         
+            })
+            )
+      }
+      
+      
+      
+        updatePos(evt) {
+          this.lat = evt.lat;
+          this.lng = evt.lng;
+      
+            }
       }
 

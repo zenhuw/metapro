@@ -18,6 +18,10 @@ import {
 import {
   AuthSingletonProvider
 } from '../../providers/auth-singleton/auth-singleton';
+import {
+  GoogleMapsAPIWrapper
+} from '@agm/core'
+declare var google: any
 
 /**
  * Generated class for the SetortunaiPage page.
@@ -33,7 +37,10 @@ import {
 })
 export class SetortunaiPage {
 
-
+  lat: string = this.auth.authInfo.lat;
+  lng: string = this.auth.authInfo.lng;
+  text: string ='';
+  infowindowOpen: boolean = true;
   input: {
     nominal: any,
     note: string,
@@ -126,11 +133,15 @@ export class SetortunaiPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private decimalPipe: DecimalPipe,
-    public loadingCtrl: LoadingController, public httpreq: HttpReqProvider, public auth: AuthSingletonProvider, public alertctrl: AlertController) {
+    public loadingCtrl: LoadingController, public httpreq: HttpReqProvider, public auth: AuthSingletonProvider, public alertctrl: AlertController,
+    private gmapsApi: GoogleMapsAPIWrapper) {
     this.authInfo = this.auth.authInfo;
+    
   }
 
-
+  ionViewDidEnter(){
+    this.updateinfoWindows()
+  }
   // jalanin() {
 
   //       if (this.input.nominalstr !== this.input.nominalstrold) {
@@ -213,4 +224,27 @@ export class SetortunaiPage {
     }
   }
 
+updateinfoWindows(){
+  var latlng = {
+    lat: parseFloat(this.lat),
+    lng: parseFloat(this.lng)
+  };
+      var geocoder = new google.maps.Geocoder;
+      geocoder.geocode({
+        'location': latlng
+      }, ((results,status) =>{
+            this.infowindowOpen = true;
+            this.text = results[0].formatted_address;         
+      })
+      )
 }
+
+
+
+  updatePos(evt) {
+    this.lat = evt.lat;
+    this.lng = evt.lng;
+
+      }
+    
+  }

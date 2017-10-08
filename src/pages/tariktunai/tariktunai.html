@@ -29,11 +29,24 @@
                     <ion-label stacked>Note</ion-label>
                     <ion-textarea type="text" rows="3" maxLength="500" [(ngModel)]="input.note" name="note" textarea></ion-textarea>
                   </ion-item>
-        
+                  <div class="spacer" style="height: 20px;" ></div>
+                  <div style="height: 300px">
+                   <ion-segment><ion-icon class="child" name="pin" color="primary"></ion-icon></ion-segment>
+                  <div >
+                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16" [panControl]="true" [scaleControl]="true" (centerChange)="updatePos($event)" (idle)="updateinfoWindows()"[streetViewControl]="false">
+                    <agm-marker class="child" name="cloud-download" [latitude]="lat" [longitude]="lng" [visible]="false">
+                        <agm-info-window [disableAutoPan]="true" [isOpen]="infowindowOpen">
+                          {{text}}
+                        </agm-info-window>
+                    </agm-marker>
+                    </agm-map>
+                  </div> 
+                  </div>
               <div padding>
                 <button ion-button color="primary" block>SUBMIT</button>
               </div>
         
+              
             </ion-list>
           </form>
     </ion-content>

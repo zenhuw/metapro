@@ -51,6 +51,8 @@ export class LoginPage {
   loading: any;
 
   longlat: any;
+  lat:string;
+  lng:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menucontroller: MenuController, public loadingCtrl: LoadingController, public httpreq: HttpReqProvider, public auth: AuthSingletonProvider, public alertctrl: AlertController,public modalCtrl:ModalController) {
@@ -72,7 +74,7 @@ export class LoginPage {
       .subscribe((response) => {
           console.log(response)
           if (response.STATUS == "OK") {
-            this.auth.setter(this.userInfo.username, response.TOKEN, this.longlat, response.ACCOUNT)
+            this.auth.setter(this.userInfo.username, response.TOKEN, this.longlat, response.ACCOUNT,this.lat,this.lng)
             this.loading.dismiss();
             this.navCtrl.push(TabsPage);
             console.log(this.auth.authInfo);
@@ -104,6 +106,9 @@ export class LoginPage {
     var lat = position.coords.latitude;
     var lot = position.coords.longitude;
     this.longlat = lot + ' ' + lat;
+    this.lat=lat;
+    this.lng=lot;
+
 
   }
 
