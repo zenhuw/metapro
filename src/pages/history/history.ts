@@ -17,8 +17,8 @@ import {
 } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import {
-  SortgridPipe
-} from '../../pipes/sortgrid/sortgrid';
+  OrderBy
+} from '../../pipes/sortgrid4/sortgrid4';
 /**
  * Generated class for the HistoryPage page.
  *

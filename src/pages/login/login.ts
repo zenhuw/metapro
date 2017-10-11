@@ -22,7 +22,7 @@ import {
 } from '../../providers/auth-singleton/auth-singleton';
 import {RegistrationPage}
 from '../registration/registration'
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
 /**
  * Generated class for the LoginPage page.
  *
@@ -51,8 +51,8 @@ export class LoginPage {
   loading: any;
 
   longlat: any;
-  lat:string;
-  lng:string;
+  lat:number;
+  lng:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menucontroller: MenuController, public loadingCtrl: LoadingController, public httpreq: HttpReqProvider, public auth: AuthSingletonProvider, public alertctrl: AlertController,public modalCtrl:ModalController,private geolocation: Geolocation) {
@@ -68,6 +68,7 @@ export class LoginPage {
   goLogin() {
     console.log(this.longlat)
     
+    this.getLocation();
     this.showloading();
     this.loading.present();
     this.httpreq.postreq("selogin?","xusername="+this.userInfo.username +"&xpassword=" + this.userInfo.password + "&xlocation=" + this.longlat + "&xloginfrom=M")
@@ -93,10 +94,13 @@ export class LoginPage {
 
 
 getLocation(){
-  this.geolocation.getCurrentPosition().then((resp) => {
+  let options:GeolocationOptions = {
+    maximumAge: 0, timeout: 5000, enableHighAccuracy: true
+   };
+  this.geolocation.getCurrentPosition(options).then((resp) => {
     this.longlat = resp.coords.longitude.toString() + ' ' + resp.coords.latitude.toString();
-    this.lat= resp.coords.latitude.toString();
-    this.lng= resp.coords.longitude.toString();
+    this.lat= resp.coords.latitude;
+    this.lng= resp.coords.longitude;
     // resp.coords.latitude
     // resp.coords.longitude
    }).catch((error) => {

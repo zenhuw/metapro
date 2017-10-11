@@ -138,7 +138,7 @@ pin:any;
     console.log(datefrom)
     var params = {
       xaccountnumber: this.authInfo.accountno,
-      xpin: '123',
+      xpin: this.pin,
       xtoken: this.authInfo.token,
       xusername: this.authInfo.username,
       xaction: "mutasi",
@@ -285,7 +285,7 @@ pin:any;
           
           } else if (response.STATUS != "OK") {
             this.loading.dismiss();
-            this.showalert(response.MESSAGE);
+            this.showalert(response.DATA);
             console.log(response)
           }
 

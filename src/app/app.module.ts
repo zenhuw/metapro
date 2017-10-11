@@ -32,6 +32,8 @@ from '../pipes/sortgrid/sortgrid';
 import { DatePicker } from '@ionic-native/date-picker';
 import {NotSame} from '../pages/changepass/changepass';
 import { Geolocation } from '@ionic-native/geolocation';
+import {OrderBy}
+from '../pipes/sortgrid4/sortgrid4'
 
 @NgModule({
   declarations: [
@@ -46,7 +48,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     LoginPage,
     SaldomodalPage,
     RegistrationPage,
-    ChangepassPage,SortgridPipe,NotSame
+    ChangepassPage,NotSame,SortgridPipe,OrderBy
 
 
   ],
@@ -79,7 +81,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     HttpReqProvider,
     AuthSingletonProvider,
     BarcodeScanner,
-    DatePicker,SortgridPipe,Geolocation
+    DatePicker,Geolocation
 
   ]
 })

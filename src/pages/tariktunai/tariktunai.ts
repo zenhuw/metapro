@@ -33,8 +33,8 @@ declare var google: any
   templateUrl: 'tariktunai.html',
 })
 export class TariktunaiPage {
-  lat: number = parseInt(this.auth.authInfo.lat);
-  lng: number = parseInt(this.auth.authInfo.lng);
+  lat: number = this.auth.authInfo.lat;
+  lng: number = this.auth.authInfo.lng;
   text: string ='';
   infowindowOpen: boolean = true;
 

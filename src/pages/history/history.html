@@ -27,7 +27,7 @@
 
 
 <ion-content padding>
-  <div *ngFor="let trn of trnInfo | sortgrid:'tranDate'">
+  <div *ngFor="let trn of trnInfo | orderBy:['-tranDate']; let i = index">
     <div *ngIf="trn.status=='0'&& statushist=='0'">
     <ion-card>
       <ion-card-header>
@@ -71,7 +71,7 @@
   </div> -->
   </div>
 
-  <div *ngFor="let trn of trnInfo | sortgrid:'tranDate'">
+  <div *ngFor="let trn of trnInfo | orderBy:['-tranDate']; let i = index">
       <div *ngIf="trn.status=='1'&& statushist=='1'">
       <ion-card>
         <ion-card-header>

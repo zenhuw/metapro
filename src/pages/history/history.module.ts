@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HistoryPage } from './history';
-import {SortgridPipe}
-from '../../pipes/sortgrid/sortgrid';
+import {OrderBy}
+from '../../pipes/sortgrid4/sortgrid4';
+
 @NgModule({
   declarations: [
-    HistoryPage,SortgridPipe
+    HistoryPage,OrderBy
   ],
   imports: [
     IonicPageModule.forChild(HistoryPage),
   ],
-  providers:[SortgridPipe]
+  providers:[OrderBy]
 })
 export class HistoryPageModule {}

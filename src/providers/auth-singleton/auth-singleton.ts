@@ -18,8 +18,8 @@ export class AuthSingletonProvider {
     accountno: string,
     saldo: number,
     agenmode: boolean,
-    lat: string,
-    lng: string
+    lat: number,
+    lng: number
   }={
     username: '',
     token: '',
@@ -27,8 +27,8 @@ export class AuthSingletonProvider {
     accountno: '',
     saldo: 0,
     agenmode:false,
-    lat:'',
-    lng:''
+    lat:0,
+    lng:0
   }
 
   constructor(public http: Http) {

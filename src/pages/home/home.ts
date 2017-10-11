@@ -248,7 +248,7 @@ agenCheck(){
 
           } else if (response.STATUS != "OK") {
             this.loading.dismiss();
-            //  this.showalert(response.MESSAGE);
+            this.showalert(response.DATA,"Notification");
             console.log(response)
           }
 

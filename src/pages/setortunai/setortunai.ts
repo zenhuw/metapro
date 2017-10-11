@@ -37,8 +37,8 @@ declare var google: any
 })
 export class SetortunaiPage {
 
-  lat: number = parseInt(this.auth.authInfo.lat);
-  lng: number = parseInt(this.auth.authInfo.lng);
+  lat: number = this.auth.authInfo.lat;
+  lng: number = this.auth.authInfo.lng;
   text: string ='';
   infowindowOpen: boolean = true;
   input: {
